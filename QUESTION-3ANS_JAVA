@@ -1,3 +1,114 @@
+/*
+    Define an abstract class Shape in package P1. Inherit two more classes: Rectangle in package P2
+    and Circle in package P3. Write a program to ask the user for the type of shape and then using the
+    concept of dynamic method dispatch, display the area of the appropriate subclass.
+    Also write appropriate methods to read the data. The main() function should not be in any package.
+ 
+*/
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ first solution @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Solution-1:(Contributed by Ayush Jha)
+
+
+package P1;
+
+  public abstract class Shape {
+
+   abstract public double area();
+
+
+}
+ _______________________  ____________________
+
+package P2;
+import P1.*;
+
+
+public class Rectangle extends Shape{
+   private int l;
+    private int b;
+
+    public Rectangle(int l, int b) {
+        this.l = l;
+        this.b = b;
+    }
+
+    @Override
+    public double area() {
+        return l*b;
+    }
+
+}
+
+___________________  _________________________
+
+package P3;
+import P1.*;
+
+ public class Circle extends Shape{
+     int r;
+
+     public Circle(int r) {
+         this.r = r;
+     }
+
+     @Override
+     public double area() {
+         return 3.14*r*r;
+     }
+ }
+
+
+________________  _________________________
+
+import P1.Shape;
+import P2.Rectangle;
+import P3.Circle;
+import java.util.Scanner;
+
+  public class Main {
+    public static void main(String[] args) {
+        int n;
+        Scanner sc = new Scanner(System.in);
+        Shape shape;
+        System.out.println("Hey Buddy ! Select the option for the area you want:");
+        boolean flag = true;
+        do{
+
+            System.out.println("Select the '1' to get the area of rectangle: ");
+            System.out.println("Select the '2' to get the area of circle: ");
+            System.out.println("press any other key to exit :");
+            n = sc.nextInt();
+            switch(n){
+                case 1:
+                    System.out.print("Enter l and b: ");
+                    int l = sc.nextInt();
+                    int b = sc.nextInt();
+                    shape = new Rectangle(l,b);
+                    System.out.println("Area of rectangle: " + shape.area());
+                    break;
+                case 2:
+                    System.out.println("Enter radius of circle: ");
+                    int r = sc.nextInt();
+                    shape = new Circle(r);
+                    System.out.println("Area of circle: " + shape.area());
+                    break;
+                default:
+                    flag = false;
+                    break;
+            }
+            if(!flag) {
+                break;
+            }
+        }while(true);
+    }
+}
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Second Solution @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Solution-2: (Contibuted by Krishna)
+
 package P1;
 
 public abstract class Shape {
